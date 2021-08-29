@@ -86,7 +86,7 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
             if interaction.user.mention in attendees_denied:
                 attendees_denied.remove(interaction.user.mention)
                 if not attendees_denied:
-                        new_embed.set_field_at(index=1, name='Not Attending', value='*Nobody yet!*')
+                        new_embed.set_field_at(index=1, name='Not Attending', value='-')
                 else:
                     new_embed.set_field_at(index=1, name='Not Attending', value='\n'.join(attendees_denied))
 
@@ -104,7 +104,7 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
             if interaction.user.mention in attendees_registered:
                 attendees_registered.remove(interaction.user.mention)
                 if not attendees_registered:
-                        new_embed.set_field_at(index=0, name='Attendees', value='*Nobody yet!*')
+                        new_embed.set_field_at(index=0, name='Attendees', value='-')
                 else:
                     new_embed.set_field_at(index=0, name='Attendees', value='\n'.join(attendees_registered))
 
@@ -119,12 +119,12 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
 
 
         async def cancel_callback(interaction: Interaction):
-            if interaction.user.mention in msg.embeds[0].description:
+            if interaction.user == host:
                 # construct new embed to modify the description
                 attending_embed_dict['description'] = '**This event has been cancelled.**'
                 new_embed = discord.Embed.from_dict(attending_embed_dict)
-                new_embed.set_field_at(0, 'Attending', embed.fields[0].value)
-                new_embed.set_field_at(1, 'Not Attending', embed.fields[1].value)
+                new_embed.set_field_at(0, name='Attending', value=embed.fields[0].value)
+                new_embed.set_field_at(1, name='Not Attending', value=embed.fields[1].value)
 
                 await interaction.respond(type=6)
                 await interaction.edit_origin(components=[], embed = new_embed)
@@ -138,16 +138,19 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
             'fields': [
                 {
                     'name': 'Attendees',
-                    'value': '*Nobody yet!*',
+                    'value': '-',
                     'inline': True
                 },
                 {
                     'name': 'Not Attending',
-                    'value': '*Nobody yet!*',
+                    'value': '-',
                     'inline': True
                 }
             ]
         }
+        
+        # save the host so they may cancel the event
+        host = ctx.author
 
         # format the title from input
         event_title = ' '.join(args)
