@@ -1,7 +1,7 @@
 # Schedulebot
 Schedulebot is a simple Discord bot using [discord.py](https://github.com/Rapptz/discord.py) created to help manage scheduled events in your Discord server. It makes it easy to schedule an event and confirm your attendance or absence.
 
-![enter image description here](https://via.placeholder.com/600x300)
+![enter image description here](docs/demo.gif)
 
 ## Running
 You should just be able to clone the repository and run the `bot.py` file directly or using poetry. The bot will generate a `config.ini` file after the first run, populate it with your bot's secret token and your desired command prefix and run the bot again to get started!
