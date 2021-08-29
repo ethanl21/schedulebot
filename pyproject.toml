@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "schedulebot"
+version = "0.1.0"
+description = ""
+authors = ["Ethan L <15167713+gomihiko@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+"discord.py" = "^1.7.3"
+discord-components = "^2.0.4"
+python-dateutil = "^2.8.2"
+pytz = "^2021.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+autopep8 = "^1.5.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
