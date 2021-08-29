@@ -42,7 +42,8 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
             else:
                 zone_strs.append(time_local.strftime('%I:%M:%S %p'))
 
-        # Add special emojis
+        # if the title contains a word in the keywords, a corresponding
+        # emoji from the emojis will be appended to the event title
         keywords = {
             'study': ['school', 'textbook', 'study', 'exam', 'project', 'homework'],
             'video_game': ['gaming', 'xbox', 'ps4', 'ps5', 'steam', 'epic', 'tournament', 'siege', 'valorant'],
@@ -68,7 +69,7 @@ class ScheduleCog(commands.Cog, name='Scheduling'):
                 break
         
         # construct embed
-        embed=discord.Embed(title=event_title, description=f'Scheduled by {author.mention}\n{date.today()}', color=random_color(), timestamp=datetime.utcnow())
+        embed=discord.Embed(title=event_title, description=f'Scheduled by {author.mention}\nfor {time.strftime("%A %B %d, %Y")}', color=random_color(), timestamp=datetime.utcnow())
         embed.set_thumbnail(url=author.avatar_url)
         embed.set_footer(text='Schedule Bot')
         embed.add_field(name=f'Pacific Time ({zones[0].strftime("%Z")})', value=zone_strs[0], inline=False)
