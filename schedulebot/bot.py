@@ -14,7 +14,7 @@ def main():
         token, prefix = utils.get_config()
 
     # Create bot object
-    activity = discord.Game(name=f'{prefix}PLACEHOLDER')
+    activity = discord.Game(name=f'{prefix}schedule')
     bot = ComponentsBot(command_prefix=prefix, activity=activity)
 
     # Register events
