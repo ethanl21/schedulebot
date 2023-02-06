@@ -1,3 +1,6 @@
+# This repository is no longer maintained
+Schedulebot was written before Discord announced their Events feature and it has not been updated since. No support will be provided.
+
 # Schedulebot
 Schedulebot is a simple Discord bot using [discord.py](https://github.com/Rapptz/discord.py) created to help manage scheduled events in your Discord server. It makes it easy to schedule an event and confirm your attendance or absence.
 
